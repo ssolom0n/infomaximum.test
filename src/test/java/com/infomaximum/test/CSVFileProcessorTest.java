@@ -20,32 +20,23 @@ class CSVFileProcessorTest {
     }
 
     @Test
-    void testUniqueItemsShouldHaveSize5() {
+    void testUniqueItemsShouldHaveSize5() throws ApplicationException {
         File file = new File(classLoader.getResource("CSV/5UniqueItemsAnd2Doubles.csv").getFile());
-        try {
-            fileProcessor.process(file);
-        } catch (ApplicationException e) {
-            e.printStackTrace();
-        }
+        fileProcessor.process(file);
         assertEquals(5, fileProcessor.getUniqueItems().size());
     }
 
     @Test
-    void testduplicatesMapShouldHaveSize2() {
+    void testduplicatesMapShouldHaveSize2() throws ApplicationException {
         File file = new File(classLoader.getResource("CSV/5UniqueItemsAnd2Doubles.csv").getFile());
-        try {
-            fileProcessor.process(file);
-        } catch (ApplicationException e) {
-            e.printStackTrace();
-        }
+        fileProcessor.process(file);
         assertEquals(2, fileProcessor.getDuplicatesMap().size());
     }
 
     @Test
     void testExpectingExceptionWrongFileEmpty() {
         fileProcessor = new CSVFileProcessor();
-        File file = new File(classLoader.getResource("CSV/Empty.csv")
-                .getFile());
+        File file = new File(classLoader.getResource("CSV/Empty.csv").getFile());
         ApplicationException thrown = assertThrows(ApplicationException.class, () -> {
             fileProcessor.process(file);
         });

@@ -17,28 +17,20 @@ class FileProcessorTest {
     FileProcessor fileProcessor;
 
     @Test
-    void testUniqueItemsShouldHaveSize5() {
+    void testUniqueItemsShouldHaveSize5() throws ApplicationException {
         fileProcessor = new XMLFileProcessor();
         File file = new File(classLoader.getResource("XML/5UniqueItemsAnd2Doubles.xml")
                 .getFile());
-        try {
-            fileProcessor.process(file);
-        } catch (ApplicationException e) {
-            e.printStackTrace();
-        }
+        fileProcessor.process(file);
         assertEquals(5, fileProcessor.getUniqueItems().size());
     }
 
     @Test
-    void testduplicatesMapShouldHaveSize2() {
+    void testduplicatesMapShouldHaveSize2() throws ApplicationException {
         fileProcessor = new XMLFileProcessor();
         File file = new File(classLoader.getResource("XML/5UniqueItemsAnd2Doubles.xml")
                 .getFile());
-        try {
-            fileProcessor.process(file);
-        } catch (ApplicationException e) {
-            e.printStackTrace();
-        }
+        fileProcessor.process(file);
         assertEquals(2, fileProcessor.getDuplicatesMap().size());
     }
 
